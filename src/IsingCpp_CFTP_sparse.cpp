@@ -78,7 +78,7 @@ NumericVector PplusMinMax(int i, const arma::sp_mat& J, IntegerVector s, Numeric
        
 // Inner function:
 IntegerVector IsingEx(const arma::sp_mat& graph, NumericVector thresholds, double beta, int nIter, IntegerVector responses, bool exact,
-IntegerVector constrain)
+IntegerVector constrain) // constrain does not work here
 {
   // Parameters and results vector:
   int N = graph.n_rows;
