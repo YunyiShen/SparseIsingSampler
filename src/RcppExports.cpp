@@ -22,8 +22,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // IsingSamplerCpp
-IntegerMatrix IsingSamplerCpp(int n, const arma::sp_mat& graph, NumericVector thresholds, double beta, int nIter, IntegerVector responses, bool exact, IntegerVector constrain);
-RcppExport SEXP _SparseIsingSampler_IsingSamplerCpp(SEXP nSEXP, SEXP graphSEXP, SEXP thresholdsSEXP, SEXP betaSEXP, SEXP nIterSEXP, SEXP responsesSEXP, SEXP exactSEXP, SEXP constrainSEXP) {
+IntegerMatrix IsingSamplerCpp(int n, const arma::sp_mat& graph, NumericVector thresholds, double beta, int nIter, IntegerVector responses, bool exact);
+RcppExport SEXP _SparseIsingSampler_IsingSamplerCpp(SEXP nSEXP, SEXP graphSEXP, SEXP thresholdsSEXP, SEXP betaSEXP, SEXP nIterSEXP, SEXP responsesSEXP, SEXP exactSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -34,8 +34,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type nIter(nIterSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type responses(responsesSEXP);
     Rcpp::traits::input_parameter< bool >::type exact(exactSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type constrain(constrainSEXP);
-    rcpp_result_gen = Rcpp::wrap(IsingSamplerCpp(n, graph, thresholds, beta, nIter, responses, exact, constrain));
+    rcpp_result_gen = Rcpp::wrap(IsingSamplerCpp(n, graph, thresholds, beta, nIter, responses, exact));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -131,7 +130,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_SparseIsingSampler_IsingProcess", (DL_FUNC) &_SparseIsingSampler_IsingProcess, 5},
-    {"_SparseIsingSampler_IsingSamplerCpp", (DL_FUNC) &_SparseIsingSampler_IsingSamplerCpp, 8},
+    {"_SparseIsingSampler_IsingSamplerCpp", (DL_FUNC) &_SparseIsingSampler_IsingSamplerCpp, 7},
     {"_SparseIsingSampler_H", (DL_FUNC) &_SparseIsingSampler_H, 3},
     {"_SparseIsingSampler_f", (DL_FUNC) &_SparseIsingSampler_f, 3},
     {"_SparseIsingSampler_Hvec", (DL_FUNC) &_SparseIsingSampler_Hvec, 3},

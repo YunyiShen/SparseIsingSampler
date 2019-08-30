@@ -1,5 +1,5 @@
 # Wrapper function:
-IsingSampler <- function(n, graph, thresholds, beta = 1, nIter = 100, responses = c(0L, 1L), method = c("MH","CFTP","direct"), CFTPretry = 10, constrain,verbose = F)
+IsingSampler <- function(n, graph, thresholds, beta = 1, nIter = 100, responses = c(0L, 1L), method = c("MH","CFTP","direct"), CFTPretry = 10,verbose = F)
 {
   #require(RcppArmadillo)
   stopifnot(!missing(graph)|!missing(thresholds))
@@ -13,18 +13,13 @@ IsingSampler <- function(n, graph, thresholds, beta = 1, nIter = 100, responses 
   method <- method[1]
   if (! method %in% c("MH","CFTP","direct")) stop("method must be 'MH', 'CFTP', or 'direct'")
 
-  # Check constrains:
-  if (missing(constrain))
-  {
-    constrain <- matrix(NA,n,ncol(graph))
-  }
 
   if (method %in% c("MH","CFTP"))
   {
     try <- 1
 
     repeat{
-      Res <- IsingSamplerCpp(as.integer(n), graph, thresholds, beta, as.integer(nIter), as.integer(responses), as.logical(method == "CFTP"), constrain)
+      Res <- IsingSamplerCpp(as.integer(n), graph, thresholds, beta, as.integer(nIter), as.integer(responses), as.logical(method == "CFTP"))
 
       if (any(is.na(Res)) & method == "CFTP")
       {

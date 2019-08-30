@@ -5,8 +5,8 @@ IsingProcess <- function(nSample, graph, thresholds, beta, responses) {
     .Call('_SparseIsingSampler_IsingProcess', PACKAGE = 'SparseIsingSampler', nSample, graph, thresholds, beta, responses)
 }
 
-IsingSamplerCpp <- function(n, graph, thresholds, beta, nIter, responses, exact, constrain) {
-    .Call('_SparseIsingSampler_IsingSamplerCpp', PACKAGE = 'SparseIsingSampler', n, graph, thresholds, beta, nIter, responses, exact, constrain)
+IsingSamplerCpp <- function(n, graph, thresholds, beta, nIter, responses, exact) {
+    .Call('_SparseIsingSampler_IsingSamplerCpp', PACKAGE = 'SparseIsingSampler', n, graph, thresholds, beta, nIter, responses, exact)
 }
 
 H <- function(J, s, h) {
