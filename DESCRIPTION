@@ -3,7 +3,7 @@ Type: Package
 Title: Sparse graph Ising model Sampler
 Version: 0.1.0
 Author: Y. Shen
-Maintainer: Personal use currently
+Maintainer: Y. Shen <yshen99@wisc.edu>
 Description: Sample from Ising model with a sparse graph (e.g. large nearest neightborhood interacting system)
     Modeified from R package IsingSampler
 License: GPL 3.0
