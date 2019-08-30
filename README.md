@@ -1,0 +1,2 @@
+A modeified verson of R pacakge [IsingSampler](https://cran.r-project.org/web/packages/IsingSampler/index.html) optimized for sparse graph by utilizing RcppArmadillo.
+Also for learning to build R package.
