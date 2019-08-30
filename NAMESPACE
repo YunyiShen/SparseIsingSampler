@@ -3,6 +3,7 @@ import(RcppArmadillo)
 import(Matrix)
 export(IsingSampler)
 export(IsingStateProb)
-
+export(H)
+export(f)
 
 
