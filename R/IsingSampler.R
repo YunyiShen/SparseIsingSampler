@@ -1,11 +1,11 @@
 # Wrapper function:
-IsingSampler <- function(n, graph, thresholds, beta = 1, nIter = 100, responses = c(0L, 1L), method = c("MH","CFTP","direct"), CFTPretry = 10, constrain)
+IsingSampler <- function(n, graph, thresholds, beta = 1, nIter = 100, responses = c(0L, 1L), method = c("MH","CFTP","direct"), CFTPretry = 10, constrain,verbose = F)
 {
   #require(RcppArmadillo)
   stopifnot(!missing(graph)|!missing(thresholds))
   stopifnot(isSymmetric(graph))
   stopifnot(length(responses)==2)
-  if (any(diag(graph)!=0))
+  if (any(diag(graph)!=0) & verbose)
   {
     diag(graph) <- 0
     warning("Diagonal set to 0")
@@ -30,11 +30,11 @@ IsingSampler <- function(n, graph, thresholds, beta = 1, nIter = 100, responses 
       {
         if (try < CFTPretry)
         {
-          cat("\n Restarting CFTP chain, attempt: ",try,"\n")
+          if(verbose) cat("\n Restarting CFTP chain, attempt: ",try,"\n")
           try <- try + 1
         } else
         {
-          warning(paste("NA's detected, this means that no CFTP sample was drawn after 100 couplings to the past and",CFTPretry,"resets of the chain. Use higher nIter value or method='MH' for inexact sampling."))
+          if(verbose) warning(paste("NA's detected, this means that no CFTP sample was drawn after 100 couplings to the past and",CFTPretry,"resets of the chain. Use higher nIter value or method='MH' for inexact sampling."))
           break
         }
       } else break
@@ -48,14 +48,14 @@ IsingSampler <- function(n, graph, thresholds, beta = 1, nIter = 100, responses 
 }
 
 ## direct sampling function:
-IsingDir <- function(n, graph, thresholds, beta,responses = c(0L,1L))
+IsingDir <- function(n, graph, thresholds, beta,responses = c(0L,1L),verbose = F)
 {
   stopifnot(isSymmetric(graph))
   stopifnot(length(responses)==2)
   if (any(diag(graph)!=0))
   {
     diag(graph) <- 0
-    warning("Diagonal set to 0")
+    if(verbose) warning("Diagonal set to 0")
   }
   N <- nrow(graph)
   Allstates <- do.call(expand.grid,lapply(1:N,function(x)c(responses[1],responses[2])))
