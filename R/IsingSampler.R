@@ -62,3 +62,14 @@ IsingDir <- function(n, graph, thresholds, beta,responses = c(0L,1L))
   P <- exp(- beta * apply(Allstates,1,function(s)H(graph,s,thresholds)))
   return(Allstates[sample(1:nrow(Allstates),n,TRUE,prob=P),])
 }
+
+IsingStateProb <- function(s,graph,thresholds,beta,responses=c(0L,1L))
+{
+  if (!is.list(s)) s <- list(s)
+  N <- length(s[[1]])
+  Allstates <- do.call(expand.grid,lapply(1:N,function(x)responses))
+  Dist <- exp(- beta * apply(Allstates,1,function(s)H(graph,s,thresholds)))
+  Z <- sum(Dist)
+
+  sapply(s, function(x)exp(-beta*H(graph,x,thresholds))/Z)
+}

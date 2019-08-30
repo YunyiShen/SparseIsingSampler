@@ -1,15 +1,8 @@
-useDynLib(SaprseIsingSampler)
-import(plyr)
+useDynLib(SparseIsingSampler)
 import(RcppArmadillo)
 import(Matrix)
-import(magrittr)
-import(nnet)
 export(IsingSampler)
-export(IsingSumLikelihood)
-export(IsingLikelihood)
 export(IsingStateProb)
-export(LinTransform)
-export(EstimateIsing)
-export(IsingPL)
+
 
 
